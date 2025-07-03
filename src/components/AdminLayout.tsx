@@ -2,8 +2,16 @@
 import { Outlet } from 'react-router-dom';
 import AdminHeader from './AdminHeader';
 import AdminSidebar from './AdminSidebar';
+import AdminLogin from './AdminLogin';
+import { useAdmin } from '../contexts/AdminContext';
 
 const AdminLayout = () => {
+  const { isAuthenticated, login } = useAdmin();
+
+  if (!isAuthenticated) {
+    return <AdminLogin onLogin={login} />;
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
       <AdminHeader />

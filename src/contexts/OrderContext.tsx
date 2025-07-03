@@ -1,6 +1,7 @@
 
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 import { CartItem } from './CartContext';
+import { sampleOrders } from '../data/sampleOrders';
 
 export interface CustomerDetails {
   name: string;
@@ -39,7 +40,7 @@ export const useOrders = () => {
 };
 
 export const OrderProvider = ({ children }: { children: ReactNode }) => {
-  const [orders, setOrders] = useState<Order[]>([]);
+  const [orders, setOrders] = useState<Order[]>(sampleOrders);
 
   const addOrder = (items: CartItem[], customerDetails: CustomerDetails, paymentMethod: string): string => {
     const orderId = `ORD-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;

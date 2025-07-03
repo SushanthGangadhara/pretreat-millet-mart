@@ -2,8 +2,17 @@
 import { Link } from 'react-router-dom';
 import { Wheat, Settings, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useAdmin } from '../contexts/AdminContext';
+import { toast } from 'sonner';
 
 const AdminHeader = () => {
+  const { logout } = useAdmin();
+
+  const handleLogout = () => {
+    logout();
+    toast.success('Logged out successfully');
+  };
+
   return (
     <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
       <div className="px-6 py-4">
@@ -31,6 +40,10 @@ const AdminHeader = () => {
                 View Store
               </Button>
             </Link>
+            <Button variant="outline" size="sm" onClick={handleLogout}>
+              <LogOut className="h-4 w-4 mr-2" />
+              Logout
+            </Button>
           </div>
         </div>
       </div>
